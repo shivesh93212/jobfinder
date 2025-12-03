@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobFinder - Saved</title>
+    <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+         <header class="topbar">
+           <div class="brand">JobFinder</div>
+
+           <div class="search-area"></div>
+
+           <div class="user-area">
+            <a href="index.html" class="link">Home</a>
+            <a href="tracker.html" class="link">Tracker</a>
+           </div>
+       </header>
+
+       <main class="layout" style="grid-template-columns:1fr;">
+        <section style="padding:24px;">
+            <h2>Saved Jobs</h2>
+            <div id="savedList" class="job-list"></div>
+            <div id="noSaved" class="no-results" hidden>No saved jobes yet.</div>
+        </section>
+       </main>
+       <script src="tracker.js"></script>
+</body>
+</html>

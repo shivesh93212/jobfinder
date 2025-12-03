@@ -3,54 +3,188 @@
   --shadow: 0 6px 18px rgba(16,24,40,0.06);
   font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
-*{box-sizing:border-box}
-body{
-  margin:0; background:var(--bg); color:#0f172a; min-height:100vh;
+
+*{
+  box-sizing:border-box;
 }
 
+body{
+  margin:0;
+  background:var(--bg);
+  color:#0f172a;
+  min-height:100vh;
+}
+
+/* ------------------ TOPBAR ------------------ */
+
 .topbar{
-    display:flex;
-    align-items:center;
-    gap:16px;
-    padding:14px 20px;
-    background:linear-gradient(90deg,#ffffff80,#ffffff00);
-    border-bottom:1px solid #e6edf5;
+  display:flex;
+  align-items:center;
+  gap:16px;
+  padding:14px 20px;
+  background:linear-gradient(90deg,#ffffff80,#ffffff00);
+  border-bottom:1px solid #e6edf5;
+  flex-wrap: wrap;  /* makes topbar responsive */
 }
+
 .brand{
-    font-weight:700;
-    font-size:20px;
-    color:var(--accent);
+  font-weight:700;
+  font-size:20px;
+  color:var(--accent);
 }
+
 .search-area{
-    display:flex;
-    gap:8px;
-    flex:1;
+  display:flex;
+  gap:8px;
+  flex:1;
+  min-width: 250px; /* prevents shrinking too much */
 }
+
 .search-area input{
-    padding:10px 12px;
-    border-radius:8px;
-    border:1px solid #dbe7fb;
-    width:100px;
+  padding:10px 12px;
+  border-radius:8px;
+  border:1px solid #dbe7fb;
+  width:100%;
 }
+
 .search-area button{
-    background:var(--accent);
-    color:#fff;
-    border:none;
-    padding:10px 14px;
-    border-radius:8px;
-    cursor:pointer;
+  background:var(--accent);
+  color:#fff;
+  border:none;
+  padding:10px 14px;
+  border-radius:8px;
+  cursor:pointer;
+  white-space: nowrap;
 }
 
 .user-area .link{
-    margin-right:10px;
-    color:var(--muted);
-    text-decoration:none;
-    cursor:pointer;
+  margin-right:10px;
+  color:var(--muted);
+  text-decoration:none;
+  cursor:pointer;
 }
+
 .user-area .small{
-    background:transparent;
-    border:1px solid #dbe7fb;
-    padding:8px 10px;
-    border-radius:8px;
-    cursor:pointer;
+  background:transparent;
+  border:1px solid #dbe7fb;
+  padding:8px 10px;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+/* ------------------ FILTERS ------------------ */
+
+.filters{
+  background:var(--card);
+  padding:18px;
+  border-radius:12px;
+  box-shadow:var(--shadow);
+  min-width: 220px;
+}
+
+.filters h3{
+  margin:0 0 12px 0;
+}
+
+.filters label{
+  display:block;
+  margin-bottom:12px;
+  font-size:14px;
+  color:var(--muted);
+}
+
+.filters input,
+.filters select{
+  width:100%;
+  padding:10px;
+  border-radius:8px;
+  border:1px solid #eef3fb;
+}
+
+#clearFilters{
+  background:transparent;
+  border:1px solid #dbe7fb;
+  margin-top:5px;
+  padding:8px 10px;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+/* ------------------ RESULTS ------------------ */
+
+.results{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.results-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.job-list{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+/* ---------------------------------------
+    RESPONSIVE BREAKPOINTS
+----------------------------------------*/
+
+/* 📱 Mobile (max-width: 768px) */
+@media (max-width: 768px){
+
+  .topbar{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .search-area{
+    width: 100%;
+  }
+
+  .layout{
+    display: block;
+    padding: 16px;
+  }
+
+  .filters{
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+
+/* 📱 Small Mobile (max-width: 480px) */
+@media (max-width: 480px){
+
+  .topbar{
+    padding: 10px;
+  }
+
+  .brand{
+    font-size: 18px;
+  }
+
+  .search-area input{
+    padding: 8px;
+  }
+  
+  .search-area button{
+    padding: 8px 10px;
+    font-size: 14px;
+  }
+
+  .filters{
+    padding: 14px;
+  }
+
+  .filters input,
+  .filters select{
+    padding: 8px;
+    border:1px solid #eef3fb;
+  }
 }

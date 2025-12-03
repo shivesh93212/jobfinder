@@ -22,6 +22,56 @@
             <button id="loginBtn" class="small">Login</button>
            </div>
        </header>
+
+       <main class="layout">
+        <aside class="filters">
+            <h3>filters</h3>
+            <label>Type
+               <select id="jobType">
+                <option value="">Any</option>
+                <option value="full-time">Full-time</option>
+                <option value="part-time">Part-time</option>
+                <option value="remote">Remote</option>
+               </select>
+            </label>
+
+            <label>Experience
+                <select id="exp">
+                    <option value="">Any</option>
+                    <option value="junior">Junior</option>
+                    <option value="mid">Mid</option>
+                    <option value="senior">Senior</option>
+                </select>
+            </label>
+
+            <div class="range">
+                <label>Salary (₹):</label>
+                <input id="minSalary" placeholder="min"/>
+                <input id="maxSalary" placeholder="max"/>
+            </div>
+
+            <button id="clearFilters" class="small">Clear</button>
+        </aside>
+
+        <section class="results">
+            <div id="resultHeader" class="result-header">
+                <p id="resultCount">Enter query and press Search</p>
+                <div class="sort">
+                    <label>Sort:
+                        <select id="sortBy">
+                            <option value="relevance">relevance</option>
+                            <option value="new">Newest</option>
+                        </select>
+                    </label>
+                </div>
+            </div>
+
+            <div id="jobList" class="job-list"></div>
+            <div id="noResult"class="no-result" hidden>No jobs found</div>
+        </section>
+       </main>
+
+      <script src="app.js"></script>
        
 </body>
 </html>

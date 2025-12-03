@@ -3,36 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JobFinder -Search</title>
+    <title>JobFinder - Search</title>
     <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
-       <header class="topbar">
-           <div class="brand">JobFinder</div>
 
-           <div class="search-area">
+    <header class="topbar">
+        <div class="brand">JobFinder</div>
+
+        <div class="search-area">
             <input id="q" type="text" placeholder="Search jobs, e.g 'Full-stack developer'"/>
             <input id="location" type="text" placeholder="Location (optional)"/>
             <button id="searchBtn">Search</button>
-           </div>
+        </div>
 
-           <div class="user-area">
+        <div class="user-area">
             <a href="saved.html" class="link">Saved</a>
             <a href="tracker.html" class="link">Tracker</a>
             <button id="loginBtn" class="small">Login</button>
-           </div>
-       </header>
+        </div>
+    </header>
 
-       <main class="layout">
+    <main class="layout">
+        
         <aside class="filters">
-            <h3>filters</h3>
+            <h3>Filters</h3>
+
             <label>Type
-               <select id="jobType">
-                <option value="">Any</option>
-                <option value="full-time">Full-time</option>
-                <option value="part-time">Part-time</option>
-                <option value="remote">Remote</option>
-               </select>
+                <select id="jobType">
+                    <option value="">Any</option>
+                    <option value="full-time">Full-time</option>
+                    <option value="part-time">Part-time</option>
+                    <option value="remote">Remote</option>
+                </select>
             </label>
 
             <label>Experience
@@ -54,12 +57,13 @@
         </aside>
 
         <section class="results">
-            <div id="resultHeader" class="result-header">
+            <div id="resultHeader" class="results-header">
                 <p id="resultCount">Enter query and press Search</p>
+
                 <div class="sort">
                     <label>Sort:
                         <select id="sortBy">
-                            <option value="relevance">relevance</option>
+                            <option value="relevance">Relevance</option>
                             <option value="new">Newest</option>
                         </select>
                     </label>
@@ -67,11 +71,12 @@
             </div>
 
             <div id="jobList" class="job-list"></div>
-            <div id="noResult"class="no-result" hidden>No jobs found</div>
-        </section>
-       </main>
 
-      <script src="app.js"></script>
-       
+            <div id="noResult" class="no-results" hidden>No jobs found</div>
+        </section>
+
+    </main>
+
+    <script src="app.js"></script>
 </body>
 </html>

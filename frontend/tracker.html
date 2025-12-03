@@ -7,24 +7,34 @@
     <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
-         <header class="topbar">
-           <div class="brand">JobFinder</div>
 
-           <div class="search-area"></div>
+    <header class="topbar">
+        <div class="brand">JobFinder</div>
 
-           <div class="user-area">
+      
+        <div class="search-area"></div>
+
+        <div class="user-area">
             <a href="index.html" class="link">Home</a>
             <a href="saved.html" class="link">Saved</a>
-           </div>
-       </header>
+        </div>
+    </header>
 
-       <main class="layout" style="grid-template-columns:1fr;">
+    <main class="layout" style="grid-template-columns:1fr;">
         <section style="padding:24px;">
             <h2>Application Tracker</h2>
-            <div id="trackerList"></div>
-            <div id="noTracker" class="no-results" hidden>No Application tracked yet.</div>
+
+           
+            <div id="trackerList" class="job-list"></div>
+
+            <div id="noTracker" class="no-results" hidden>
+                No applications tracked yet.
+            </div>
         </section>
-       </main>
-       <script src="saved.js"></script>
+    </main>
+
+   
+    <script src="tracker.js"></script>
+
 </body>
 </html>

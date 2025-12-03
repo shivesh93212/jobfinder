@@ -1,4 +1,3 @@
-// Corrected app.js
 
 const searchBtn = document.querySelector("#searchBtn");
 const jobList = document.querySelector("#jobList");

@@ -188,3 +188,29 @@ body{
     border:1px solid #eef3fb;
   }
 }
+
+
+.job-card{
+  display:flex; justify-content:space-between; gap:12px;
+  background:var(--card); padding:14px; border-radius:12px; box-shadow:var(--shadow); align-items:center;
+}
+.job-left{display:flex; gap:12px; align-items:center}
+.logo{
+  width:56px; height:56px; border-radius:10px; background:#eef2ff; display:flex; align-items:center; justify-content:center; font-weight:700;
+}
+.job-meta h4{margin:0 0 6px 0}
+.job-meta p{margin:0; color:var(--muted); font-size:14px}
+.job-actions{display:flex; gap:8px; align-items:center}
+.job-actions a{padding:8px 12px; border-radius:8px; text-decoration:none; border:1px solid #e6edf5}
+.save-btn{background:transparent; border:1px solid #c7d2fe; color:var(--accent); padding:8px 12px; border-radius:8px; cursor:pointer}
+
+
+.no-results{padding:28px; text-align:center; color:var(--muted)}
+
+.small{padding:8px 10px; border-radius:8px; background:#fff; border:1px solid #e6edf5; cursor:pointer}
+
+
+@media (max-width:900px){
+  .layout{grid-template-columns:1fr; padding:12px}
+  .filters{order:2}
+}

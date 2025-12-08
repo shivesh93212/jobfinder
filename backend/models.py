@@ -1,6 +1,6 @@
 from sqlalchemy import Column ,Integer , String , Boolean , DateTime ,Text,ForeignKey
 from sqlalchemy.orm import relationship
-from .database import Base
+from database import Base
 from datetime import datetime
 
 
@@ -14,7 +14,7 @@ hashed_password=Column(String,nullable=False)
 saved_jobes=relationship("SavedJob",back_populates="user")
 tracker_jobes=relationship("TrackerJob",back_populations="user")
 
-class savedJob(Base):
+class SavedJob(Base):
     __tablename__="saved_jobs"
 
     id=Column(Integer,primary_key=True,index=True)

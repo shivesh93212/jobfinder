@@ -5,10 +5,10 @@ from passlib.context import CryptContext
 from datetime import timedelta,datetime
 from jose import jwt
 
-from .database import get_db
-from .models import User
-from .schemas import UserCreate,UserLogin
-from .config import SECRET_KEY , ALGORITHM
+from database import get_db
+from models import User
+from schemas import UserCreate,UserLogin
+from config import SECRET_KEY , ALGORITHM
 
 router = APIRouter()
 pwd=CryptContext(schemes=["bcrypt"])

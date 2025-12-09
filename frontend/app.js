@@ -2,6 +2,13 @@ const searchBtn = document.querySelector("#searchBtn");
 const jobList = document.querySelector("#jobList");
 const resultCount = document.querySelector("#resultCount");
 const noResult = document.querySelector("#noResult");
+const loginBtn = document.querySelector("#loginBtn");
+
+if (loginBtn) {
+    loginBtn.addEventListener("click", () => {
+        window.location.href = "login.html";
+    });
+}
 
 const BACKEND = "http://127.0.0.1:8000";
 
@@ -73,11 +80,20 @@ function renderJobCard(job) {
 }
 
 async function saveJob(job) {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+        alert("Please login first");
+        window.location.href = "login.html";
+        return;
+    }
+
     try {
         const resp = await fetch(`${BACKEND}/saved`, {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + token   // ✅ JWT HEADER
             },
             body: JSON.stringify({
                 title: job.title,
@@ -89,7 +105,11 @@ async function saveJob(job) {
             })
         });
 
-        if (!resp.ok) throw new Error("Save failed");
+        if (!resp.ok) {
+            const err = await resp.text();
+            console.error(err);
+            throw new Error("Save failed");
+        }
 
         alert("Job saved ✅");
 
@@ -98,6 +118,7 @@ async function saveJob(job) {
         alert("Error saving job");
     }
 }
+
 
 function escapeHtml(s = "") {
     return String(s)

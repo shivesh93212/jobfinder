@@ -4,9 +4,25 @@ const noSaved = document.querySelector("#noSaved");
 const BACKEND = "http://127.0.0.1:8000";
 
 async function loadSaved() {
-    const resp = await fetch(`${BACKEND}/saved`);
-    const saved = await resp.json();
+    const token = localStorage.getItem("token");
 
+    if (!token) {
+        window.location.href = "login.html";
+        return;
+    }
+
+    const resp = await fetch(`${BACKEND}/saved`, {
+        headers: {
+            "Authorization": "Bearer " + token
+        }
+    });
+
+    if (!resp.ok) {
+        noSaved.hidden = false;
+        return;
+    }
+
+    const saved = await resp.json();
     savedList.innerHTML = "";
 
     if (saved.length === 0) {
@@ -31,7 +47,7 @@ async function loadSaved() {
             </div>
 
             <div class="job-actions">
-                <a href="${job.apply_url || "#"}" target="_blank" rel="noopener">Apply</a>
+                <a href="${job.apply_url || "#"}" target="_blank">Apply</a>
 
                 <select class="status-select">
                     <option value="not_applied">Not Applied</option>
@@ -45,16 +61,14 @@ async function loadSaved() {
             </div>
         `;
 
-        // ✅ Set current status
+        // ✅ set status
         const select = card.querySelector(".status-select");
         select.value = job.status || "not_applied";
 
-        // ✅ Update status in BACKEND
         select.addEventListener("change", (e) =>
             updateStatus(job.id, e.target.value)
         );
 
-        // ✅ Remove saved job from BACKEND
         card.querySelector(".remove-btn")
             .addEventListener("click", () => removeSaved(job.id));
 
@@ -65,16 +79,26 @@ async function loadSaved() {
 /* ---------------- BACKEND CALLS ---------------- */
 
 async function updateStatus(jobId, status) {
+    const token = localStorage.getItem("token");
+
     await fetch(`${BACKEND}/saved/${jobId}`, {
         method: "PATCH",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token
+        },
         body: JSON.stringify({ status })
     });
 }
 
 async function removeSaved(jobId) {
+    const token = localStorage.getItem("token");
+
     await fetch(`${BACKEND}/saved/${jobId}`, {
-        method: "DELETE"
+        method: "DELETE",
+        headers: {
+            "Authorization": "Bearer " + token
+        }
     });
 
     loadSaved();

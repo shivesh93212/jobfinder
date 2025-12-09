@@ -1,66 +1,74 @@
-
 const trackerList = document.querySelector("#trackerList");
 const noTracker = document.querySelector("#noTracker");
 
+const BACKEND = "http://127.0.0.1:8000";
 
-function loadTracker() {
-    const saved = JSON.parse(localStorage.getItem("savedJobs") || "[]");
+async function loadTracker() {
+    try {
+        const resp = await fetch(`${BACKEND}/tracker`);
+        const tracked = await resp.json();
 
-    
-    const tracked = saved.filter(s => s.status && s.status !== "not_applied");
+        trackerList.innerHTML = "";
 
-    trackerList.innerHTML = ""; 
+        if (tracked.length === 0) {
+            noTracker.hidden = false;
+            return;
+        }
 
-  
-    if (tracked.length === 0) {
-        noTracker.hidden = false;
-        return;
-    }
+        noTracker.hidden = true;
 
-    noTracker.hidden = true;
+        tracked.forEach(job => {
+            const card = document.createElement("div");
+            card.className = "job-card";
 
-    tracked.forEach(job => {
-        const card = document.createElement("div");
-        card.className = "job-card";
-
-        card.innerHTML = `
-            <div style="flex:1">
-                <div style="display:flex; gap:12px; align-items:center">
-                    <div class="logo">${(job.company || 'J').charAt(0).toUpperCase()}</div>
-                    <div>
-                        <h4>${escapeHtml(job.title)}</h4>
-                        <p style="color:var(--muted); margin:0;">
-                            ${escapeHtml(job.company)} • ${escapeHtml(job.location)}
-                        </p>
+            card.innerHTML = `
+                <div style="flex:1">
+                    <div style="display:flex; gap:12px; align-items:center">
+                        <div class="logo">${(job.company || "J").charAt(0).toUpperCase()}</div>
+                        <div>
+                            <h4>${escapeHtml(job.title)}</h4>
+                            <p style="color:var(--muted); margin:0">
+                                ${escapeHtml(job.company)} • ${escapeHtml(job.location || "Remote")}
+                            </p>
+                        </div>
                     </div>
+                    <p style="margin-top:8px;font-size:13px">
+                        ${escapeHtml(job.source || "")}
+                    </p>
                 </div>
-                <p style="margin-top:8px;font-size:13px">${escapeHtml(job.source)}</p>
-            </div>
-            <div style="text-align:right">
-                <p style="margin:0 0 8px 0">
-                    Status: <strong>${humanStatus(job.status)}</strong>
-                </p>
-                <a href="${job.apply_url || '#'}" target="_blank" rel="noopener">Open</a>
-            </div>
-        `;
 
-        trackerList.appendChild(card);
-    });
+                <div style="text-align:right">
+                    <p style="margin:0 0 8px 0">
+                        Status: <strong>${humanStatus(job.status)}</strong>
+                    </p>
+                    <a href="${job.apply_url || "#"}" target="_blank" rel="noopener">
+                        Open
+                    </a>
+                </div>
+            `;
+
+            trackerList.appendChild(card);
+        });
+
+    } catch (err) {
+        console.error(err);
+        noTracker.hidden = false;
+    }
 }
 
+/* ---------------- HELPERS ---------------- */
 
 function humanStatus(s) {
     switch (s) {
-        case 'applied': return 'Applied';
-        case 'interview': return 'Interview';
-        case 'offer': return 'Offer';
-        case 'rejected': return 'Rejected';
-        default: return 'Not Applied';
+        case "applied": return "Applied";
+        case "interview": return "Interview";
+        case "offer": return "Offer";
+        case "rejected": return "Rejected";
+        default: return "Not Applied";
     }
 }
 
-
-function escapeHtml(s = '') {
+function escapeHtml(s = "") {
     return String(s)
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
@@ -69,5 +77,6 @@ function escapeHtml(s = '') {
         .replace(/'/g, "&#039;");
 }
 
+/* ---------------- INIT ---------------- */
 
 loadTracker();

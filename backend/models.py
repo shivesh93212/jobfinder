@@ -11,8 +11,8 @@ class User(Base):
     email = Column(String, unique=True, index=True, nullable=False)
     hashed_password = Column(String, nullable=False)
 
-    saved_jobs = relationship("SavedJob", back_populates="user", cascade="all, delete")
-    tracker_jobs = relationship("TrackerJob", back_populates="user", cascade="all, delete")
+    saved_jobs = relationship("SavedJob", back_populates="user")
+    tracker_jobs = relationship("TrackerJob", back_populates="user")
 
 
 class SavedJob(Base):

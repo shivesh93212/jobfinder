@@ -3,13 +3,35 @@ const jobList = document.querySelector("#jobList");
 const resultCount = document.querySelector("#resultCount");
 const noResult = document.querySelector("#noResult");
 const loginBtn = document.querySelector("#loginBtn");
+const logoutBtn=document.querySelector("#logoutBtn");
 
+function updateAuthButtons(){
+    const token=localStorage.getItem("token");
+    if(token){
+        loginBtn.hidden=true;
+        logoutBtn.hidden=false;
+    }
+    else{
+        loginBtn.hidden=false;
+        logoutBtn.hidden=true;
+    }
+}
 if (loginBtn) {
     loginBtn.addEventListener("click", () => {
         window.location.href = "login.html";
     });
 }
 
+if(logoutBtn){
+    logoutBtn.addEventListener("click",()=>{
+        localStorage.removeItem("token");
+        localStorage.removeItem("user_id");
+        alert("Logged out successfully!");
+        updateAuthButtons();
+        window.location.reload();
+    });
+}
+updateAuthButtons();
 const BACKEND = "http://127.0.0.1:8000";
 
 searchBtn.addEventListener("click", runSearch);

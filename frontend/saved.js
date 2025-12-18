@@ -1,7 +1,7 @@
 const savedList = document.querySelector("#savedList");
 const noSaved = document.querySelector("#noSaved");
 
-const BACKEND = "http://127.0.0.1:8000";
+const BACKEND = "https://jobfinder-ncq4.onrender.com";
 
 async function loadSaved() {
     const token = localStorage.getItem("token");

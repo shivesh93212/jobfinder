@@ -1,4 +1,4 @@
-const BACKEND = "http://127.0.0.1:8000";
+const BACKEND = "https://jobfinder-ncq4.onrender.com";
 
 const registerBtn = document.querySelector("#registerBtn");
 

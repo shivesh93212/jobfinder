@@ -32,7 +32,7 @@ if(logoutBtn){
     });
 }
 updateAuthButtons();
-const BACKEND = "http://127.0.0.1:8000";
+const BACKEND = "https://jobfinder-ncq4.onrender.com";
 
 searchBtn.addEventListener("click", runSearch);
 

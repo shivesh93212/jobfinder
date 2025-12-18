@@ -1,7 +1,7 @@
 const trackerList = document.querySelector("#trackerList");
 const noTracker = document.querySelector("#noTracker");
 
-const BACKEND = "http://127.0.0.1:8000";
+const BACKEND = "https://jobfinder-ncq4.onrender.com";
 
 async function loadTracker() {
     try {
